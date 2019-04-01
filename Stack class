@@ -1,6 +1,6 @@
 class Stack{//LIFO organized  data
 	private int size;//stack size
-	public int TOS;//pointer to the top of stack(TOS)
+	private int TOS;//pointer to the top of stack(TOS)
 	private int stack[];//array used for the implementation of stack
   
 	public Stack(int s){//pass the desired value for size of the stack in its public constructor
@@ -48,4 +48,8 @@ class Stack{//LIFO organized  data
 		stack[TOS-i+1]=x;
 	}
 	
+	//get TOS 
+	public int getTOS(){
+		return TOS+1;
+	}
 }
