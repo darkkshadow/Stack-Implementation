@@ -1,0 +1,75 @@
+/* package whatever; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Ideone
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Stack st=new Stack(64);
+		for(int i=1;i<4;i++){
+			st.push(i);
+			System.out.println(st.peep(1));
+		}
+		st.update(2,10);
+		System.out.println(st.pop());
+		System.out.println(st.pop());
+		System.out.println(st.pop());
+		System.out.println(st.TOS);
+		// your code goes here
+	}
+}
+
+class Stack{//LIFO organized  data
+	private int size;//stack size
+	public int TOS;//pointer to the top of stack(TOS)
+	private int stack[];//array used for the implementation of stack
+	public Stack(int s){//pass the desired value for size of the stack in its public constructor
+		size = s;
+		stack=new int[size];
+		TOS=-1;
+	}
+	public Stack(){//default value(100) for size of the stack in its public constructor
+		size = 100;
+		stack=new int[size];
+		TOS=-1;
+	}
+	
+	//push the element into the TOS
+	public void push(int x){
+		if(TOS==size-1){
+			throw new IllegalArgumentException("Stack Overflow");
+		}
+		
+		TOS++;
+		stack[TOS]=x;
+	}
+	
+	//pop the last inserted element or element at TOS
+	public int pop(){
+		if(TOS==-1)throw new IllegalArgumentException("Stack Underflow");
+		
+		int popped_elt=stack[TOS];
+		stack[TOS]=0;
+		TOS--;
+		return popped_elt;
+	}
+	
+	//get the element at ith index.  Stack(1)=stack[TOS], Stack(2)=stack[TOS-1] ,... Stack(i)=stack[TOS-i+1].
+	public int peep(int i){
+		if(TOS+1-i < 0)throw new IllegalArgumentException("Stack Underflow");
+		
+		return stack[TOS-i+1];
+	}
+	
+	//update ith index of stack with x
+	public void update(int i,int x){
+		if(TOS+1-i < 0)throw new IllegalArgumentException("Stack Underflow");
+		
+		stack[TOS-i+1]=x;
+	}
+	
+}
