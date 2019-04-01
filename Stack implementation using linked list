@@ -1,0 +1,61 @@
+class StackUsingLinkedList{
+	
+	private class Node{
+		int data;
+		Node link;
+		Node(int x){
+			data=x;
+			link=null;
+		}
+		Node(){}
+	}
+	
+	private Node TOS;
+	private Node head;
+	private int length;
+	private int size;
+	
+	StackUsingLinkedList(int size){
+		this.size=size;
+		TOS=head=null;
+		length=0;
+	}
+	StackUsingLinkedList(){
+		size=100;
+		TOS=head=null;
+		length=0;
+	}
+	
+	boolean is_empty(){
+		return (TOS==null);
+	}
+	
+	boolean is_full(){
+		return length==size;
+	}
+	
+	void push(int data){
+		if(this.is_full())throw new IllegalArgumentException("Stack Overflow");
+		Node p=new Node(data);
+		p.link=TOS;
+		TOS=p;
+		if(this.is_empty())head=TOS;
+		length++;
+	}
+	
+	int pop(){
+		if(this.is_empty())throw new IllegalArgumentException("Stack Underflow");
+		
+		int d=TOS.data;
+		TOS=TOS.link;
+		length--;
+		return d;
+	}
+	
+	int peek(){
+		if(this.is_empty())throw new IllegalArgumentException("Stack Underflow");
+		
+		return TOS.data;
+	}
+	
+}
